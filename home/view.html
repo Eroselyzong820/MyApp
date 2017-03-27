@@ -1,0 +1,523 @@
+<!--banner-->
+<div class="ad bg">
+    <div class="owl-carousel owl-theme">
+        <div class="item">
+            <picture>
+                <source srcset="./img/5.png" media="(min-width:50em)">
+                <source srcset="./img/5.png" media="(min-width:30em)">
+                <img src="./img/5.png" alt="ElkFly个人海报">
+            </picture>
+        </div>
+        <div class="item">
+            <picture>
+                <source srcset="./img/5.png" media="(min-width:50em)">
+                <source srcset="./img/5.png" media="(min-width:30em)">
+                <img src="./img/5.png" alt="ElkFly个人海报">
+            </picture>
+        </div>
+    </div>
+</div>
+<!--/banner-->
+<!--个人介绍-->
+<section class="show">
+
+    <div class="js">
+        <div class="left-tx">
+            <img src="./img/touxiang.png" alt="photo">
+        </div>
+        <div class="right-sm">
+            <h3>冯鹿</h3>
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <p>一人</p>
+                    <p>一本</p>
+                    <p>一抚键而已</p>
+                </div>
+                <div class="item">
+                    <p>__</p>
+                    <p>人生难事十之八九</p>
+                    <p>能与人言无一二~</p>
+                </div>
+                <div class="item">
+                    <p>__</p>
+                    <p>年少时不能遇到太惊艳的人</p>
+                    <p>稀奇的是遇到了解~</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/个人介绍-->
+<section class="idea">
+
+</section>
+<script>
+    (function ($, window, document) {
+        //
+        $('.owl-carousel').owlCarousel({
+            items: 1,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+        });
+
+
+        function View() {
+            this.init();
+        }
+
+        View.prototype = {
+
+            init: function () {
+                // this.binDOM();
+                // this.binEvents();
+                // this.model();
+            },
+            binDOM: function () {
+                this.e_ul = $('header .main ul');
+                this.e_li = $('header .main ul li');
+                this.e_span = $('header .main .item span');
+                this.item = $('header .main .item');
+            },
+            binEvents: function () {
+                var that = this;
+                if ($(window).width() <= 581) {
+                    that.item.show();
+                    $(that.e_li).css({'opacity': 0});
+                    // $('header .main ul').addClass('nav_open');
+                    var flag = true;
+                    $(that.item).on('click', function () {
+                        // $(that.e_span).toggleClass('btn_close_memu');
+                        window.event.stopPropagation();
+                        if (flag) {
+                            // alert($(that.e_span).hasClass('btn_close_memu'))
+                            console.log(flag)
+                            $(that.e_span).removeClass('btn_close_memu');
+                            // fadeOut()
+                            $(that.e_li).animate({
+                                opacity: 0,
+                                right: '-30rem',
+                            }, 1000);
+                            flag = false;
+                        }
+                        if (!flag) {
+                            console.log(flag)
+                            $(that.e_span).addClass('btn_close_memu');
+                            //fadeIn()
+                            $(that.e_li).show().animate({
+                                opacity: 1,
+                                right: 0,
+                            });
+                            flag = !false;
+                        }
+                    });
+                } else {
+                    $(that.item).hide();
+                    $(that.e_li).css({opacity: 1, right: 0});
+                }
+            },
+        }
+
+        function model() {
+            $('header .main .item').hide();
+            if ($(window).width() < 500) {
+                $('header .main .item').show();
+                // var e_ul = $('header .main ul');
+                var e_li = $('header .main ul li');
+                var e_span = $('header .main .item span');
+                $(e_li).css({'opacity': 0});
+                // $('header .main ul').addClass('nav_open');
+                $('header .main .item').on('click', function (e) {
+                    // e.stopPropagation();
+                    if ($(e_span).hasClass('btn_close_memu')) {
+                        $(e_span).removeClass('btn_close_memu');
+                        // fadeOut()
+                        $(e_li).animate({
+                            opacity: 0,
+                            right: '-30rem',
+                        }, 1000);
+                        $
+                    } else {
+                        $(e_span).addClass('btn_close_memu');
+                        //fadeIn()
+                        $(e_li).show().animate({
+                            opacity: 1,
+                            right: 0,
+                        });
+                    }
+                    // $(e_ul).hasClass('nav_open') ? $(e_ul).removeClass('nav_open') : $(e_ul).addClass('nav_open');
+                });
+            } else {
+                $('header .main .item').hide();
+            }
+        }
+
+
+        function BarAnimate() {
+            $('.h5_component_bar .name').addClass('amt_name');
+            $('.h5_component_bar .rate .bg ').addClass('amt_rate');
+            $('.h5_component_bar .per').addClass('amt_name');
+        }
+
+        function BarRemoveAnimate() {
+            $('.h5_component_bar .name').removeClass('amt_name');
+            $('.h5_component_bar .rate .bg ').removeClass('amt_rate');
+            $('.h5_component_bar .per').removeClass('amt_name');
+        }
+
+        function scroll() {
+            if (window.pageYOffset != null)  //  ie9+ 和其他浏览器
+            {
+                return {
+                    left: window.pageXOffset,
+                    top: window.pageYOffset
+                }
+            }
+            else if (document.compatMode == "CSS1Compat")  // 声明的了 DTD
+            // 检测是不是怪异模式的浏览器 -- 就是没有 声明<!DOCTYPE html>
+            {
+                return {
+                    left: document.documentElement.scrollLeft,
+                    top: document.documentElement.scrollTop
+                }
+            }
+            return { //  剩下的肯定是怪异模式的
+                left: document.body.scrollLeft,
+                top: document.body.scrollTop
+            }
+        }
+
+        function getIE() {
+
+            if (window.ActiveXObject) {
+
+                var v = navigator.userAgent.match(/MSIE ([^;]+)/)[1];
+
+                return parseFloat(v.substring(0, v.indexOf(".")))
+
+            }
+
+            return false
+
+        }
+
+        // event.pageX
+        model();
+        window.onscroll = function () {
+
+            if ($(window).width() <= 481) {
+                if ((scroll().top >= 85)) {
+                    $('.h5_component_bar .name').css({opacity: '1'});
+                    $('.h5_component_bar .rate .bg ').css({width: '100%'});
+                    $('.h5_component_bar .per').css({opacity: '1'});
+                } else {
+                    $('.h5_component_bar .name').css({opacity: '0'});
+                    $('.h5_component_bar .rate .bg ').css({width: '0%'});
+                    $('.h5_component_bar .per').css({opacity: '0'});
+                }
+            }
+            if ((scroll().top >= 900)) {
+                BarAnimate();
+                // console.log(BarAnimate())
+            } else if ((scroll().top <= 700)) {
+                BarRemoveAnimate();
+            }
+
+            /* else if ((scroll().top <= 800)) {
+             BarAnimate();
+             }*/
+        }
+
+        if (getIE()) {
+            window.location = window.location.href + '404.html#ie'
+        }
+
+
+    })($, window, document);
+    /*柱图组件*/
+    (function ($, window, document) {
+
+        var H5ComponentBase = function (name, cfg) {
+            var cfg = cfg || {};
+            // var id = ( "h5_c_" + Math.random()).replace(".", "_");
+            var id = 'h5_c_' + (new Date().getTime());
+            var cls = ' h5_component_' + cfg.type;
+            var component = $('<div class="h5_component ' + cls + ' h5_component_name_' + name + '" id="' + id + '">');
+
+            cfg.text && component.text(cfg.text);
+            cfg.width && component.width(cfg.width);
+            cfg.height && component.height(cfg.height);
+
+            cfg.css && component.css(cfg.css)
+            cfg.bg && component.css('backgroundImage', 'url(' + cfg.bg + ')');
+
+            if (cfg.center === true) {
+                component.css({
+                    marginLeft: (cfg.width / 4 * -1) + 'px',
+                    left: '50%'
+                });
+            }
+
+            /*   if ( typeof cfg.onclick === 'function'){
+             component.on('click',cfg.onclick);
+             }
+             */
+            // component.on('onLoad', function () {
+            //
+            // })
+
+            return component;
+        }
+
+        // 柱图
+        var Bar = function (name, cfg) {
+            var component = new H5ComponentBase(name, cfg);
+            $.each(cfg.data, function (index, item) {
+                // console.log(cfg.data[index])
+                var line = $('<div class="line">');
+                var name = $('<div class="name">');
+                var rate = $('<div class="rate">');
+                var per = $('<div class="per">');
+
+                var width = item[1] * 100 + '%';
+                var bgStyle = '';
+                if (item[2]) {
+                    bgStyle = 'style="background:' + item[2] + '!important"';
+                }
+                rate.html('<div class="bg" ' + bgStyle + '></div>')
+                rate.css('width', width);
+
+                per.text(width);
+                name.text(item[0]);
+                line.append(name).append(rate).append(per);
+                component.append(line);
+            })
+            return component;
+        }
+
+        var cfg = {
+            type: 'bar',
+            text: '',
+            data: [
+                ['JAVA', .5, '#FBFFEB'],
+                ['Javascript', .75, '#FBFFEB'],
+                ['HTML5', .65, '#FBFFEB'],
+                ['CSS3', .7, '#FBFFEB'],
+                ['AJAX', .7, '#FBFFEB'],
+                ['jQuery', .8, '#FBFFEB'],
+                ['Boostrap', .6, '#FBFFEB'],
+                ['Angular', .5, '#FBFFEB'],
+                ['ionic', .3, '#FBFFEB'],
+                ['Node', .1, '#FBFFEB'],
+            ],
+
+            css: {
+                top: 0,
+                opacity: 1
+            },
+        }
+        var h5 = new Bar("my", cfg);
+        $('.idea').append(h5)
+        var cfg = {
+            type: 'pie',
+            text: '',
+            data: [
+                ['Chrome', .35, '#5DDBD8'],
+                ['Sublime', .15, '#2576FF'],
+                ['WebStrom', .35, '#FE3535'],
+                ['gulp', .15, '#FE7676'],
+            ],
+            height: 400,
+            width: 400,
+        }
+        // var h5 = new Pie("myPieComponent", cfg);
+        // $(".idea").append(h5);
+
+
+    })($, window, document);
+    /*基本页面*/
+    (function ($, window, document) {
+        //
+        $('.owl-carousel').owlCarousel({
+            items: 1,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+        });
+
+
+        function View() {
+            this.init();
+        }
+
+        View.prototype = {
+
+            init: function () {
+                // this.binDOM();
+                // this.binEvents();
+                // this.model();
+            },
+            binDOM: function () {
+                this.e_ul = $('header .main ul');
+                this.e_li = $('header .main ul li');
+                this.e_span = $('header .main .item span');
+                this.item = $('header .main .item');
+            },
+            binEvents: function () {
+                var that = this;
+                if ($(window).width() <= 581) {
+                    that.item.show();
+                    $(that.e_li).css({'opacity': 0});
+                    // $('header .main ul').addClass('nav_open');
+                    var flag = true;
+                    $(that.item).on('click', function () {
+                        // $(that.e_span).toggleClass('btn_close_memu');
+                        window.event.stopPropagation();
+                        if (flag) {
+                            // alert($(that.e_span).hasClass('btn_close_memu'))
+                            console.log(flag)
+                            $(that.e_span).removeClass('btn_close_memu');
+                            // fadeOut()
+                            $(that.e_li).animate({
+                                opacity: 0,
+                                right: '-30rem',
+                            }, 1000);
+                            flag = false;
+                        }
+                        if (!flag) {
+                            console.log(flag)
+                            $(that.e_span).addClass('btn_close_memu');
+                            //fadeIn()
+                            $(that.e_li).show().animate({
+                                opacity: 1,
+                                right: 0,
+                            });
+                            flag = !false;
+                        }
+                    });
+                } else {
+                    $(that.item).hide();
+                    $(that.e_li).css({opacity: 1, right: 0});
+                }
+            },
+        }
+
+        function model() {
+            $('header .main .item').hide();
+            if ($(window).width() < 500) {
+                $('header .main .item').show();
+                // var e_ul = $('header .main ul');
+                var e_li = $('header .main ul li');
+                var e_span = $('header .main .item span');
+                $(e_li).css({'opacity': 0});
+                // $('header .main ul').addClass('nav_open');
+                $('header .main .item').on('click', function (e) {
+                    // e.stopPropagation();
+                    if ($(e_span).hasClass('btn_close_memu')) {
+                        $(e_span).removeClass('btn_close_memu');
+                        // fadeOut()
+                        $(e_li).animate({
+                            opacity: 0,
+                            right: '-30rem',
+                        }, 1000);
+                        $
+                    } else {
+                        $(e_span).addClass('btn_close_memu');
+                        //fadeIn()
+                        $(e_li).show().animate({
+                            opacity: 1,
+                            right: 0,
+                        });
+                    }
+                    // $(e_ul).hasClass('nav_open') ? $(e_ul).removeClass('nav_open') : $(e_ul).addClass('nav_open');
+                });
+            } else {
+                $('header .main .item').hide();
+            }
+        }
+
+
+        function BarAnimate() {
+            $('.h5_component_bar .name').addClass('amt_name');
+            $('.h5_component_bar .rate .bg ').addClass('amt_rate');
+            $('.h5_component_bar .per').addClass('amt_name');
+        }
+
+        function BarRemoveAnimate() {
+            $('.h5_component_bar .name').removeClass('amt_name');
+            $('.h5_component_bar .rate .bg ').removeClass('amt_rate');
+            $('.h5_component_bar .per').removeClass('amt_name');
+        }
+
+        function scroll() {
+            if (window.pageYOffset != null)  //  ie9+ 和其他浏览器
+            {
+                return {
+                    left: window.pageXOffset,
+                    top: window.pageYOffset
+                }
+            }
+            else if (document.compatMode == "CSS1Compat")  // 声明的了 DTD
+            // 检测是不是怪异模式的浏览器 -- 就是没有 声明<!DOCTYPE html>
+            {
+                return {
+                    left: document.documentElement.scrollLeft,
+                    top: document.documentElement.scrollTop
+                }
+            }
+            return { //  剩下的肯定是怪异模式的
+                left: document.body.scrollLeft,
+                top: document.body.scrollTop
+            }
+        }
+
+        function getIE() {
+
+            if (window.ActiveXObject) {
+
+                var v = navigator.userAgent.match(/MSIE ([^;]+)/)[1];
+
+                return parseFloat(v.substring(0, v.indexOf(".")))
+
+            }
+
+            return false
+
+        }
+
+        // event.pageX
+        model();
+        window.onscroll = function () {
+
+            if ($(window).width() <= 481) {
+                if ((scroll().top >= 85)) {
+                    $('.h5_component_bar .name').css({opacity: '1'});
+                    $('.h5_component_bar .rate .bg ').css({width: '100%'});
+                    $('.h5_component_bar .per').css({opacity: '1'});
+                } else {
+                    $('.h5_component_bar .name').css({opacity: '0'});
+                    $('.h5_component_bar .rate .bg ').css({width: '0%'});
+                    $('.h5_component_bar .per').css({opacity: '0'});
+                }
+            }
+            if ((scroll().top >= 900)) {
+                BarAnimate();
+                // console.log(BarAnimate())
+            } else if ((scroll().top <= 700)) {
+                BarRemoveAnimate();
+            }
+
+            /* else if ((scroll().top <= 800)) {
+             BarAnimate();
+             }*/
+        }
+
+        if (getIE()) {
+            window.location = window.location.href + '404.html#ie'
+        }
+
+
+    })($, window, document);
+
+
+</script>
