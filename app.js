@@ -4,18 +4,27 @@ angular.module('elkfly', [
     'elkfly.home',
     'elkfly.blog',
 ]).config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.otherwise({redirectTo: '/home'});
+    function isIE() { //ie?
+        if (!!window.ActiveXObject || "ActiveXObject" in window)
+            return true;
+        else
+            return false;
+    };
+
+    if (isIE()) {
+        window.location = window.location.pathname = '/404.html'
+    } else {
+        $routeProvider.otherwise({redirectTo: '/home'});
+    };
 }]);
 
 
-function getIE() {
-    if (window.ActiveXObject) {
-        var v = navigator.userAgent.match(/MSIE ([^;]+)/)[1];
-        return parseFloat(v.substring(0, v.indexOf(".")))
-    }
-    return false
+function isIE() { //ie?
+    if (!!window.ActiveXObject || "ActiveXObject" in window)
+        return true;
+    else
+        return false;
 }
-if (getIE()) {
-    // window.location = window.location.href + '404.html'
-    window.location = window.location.pathname = '/MyApp/404.html'
+if (isIE()) {
+    window.location = window.location.pathname = '/404.html'
 }
